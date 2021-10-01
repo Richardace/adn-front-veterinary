@@ -1,19 +1,17 @@
 pipeline {
 //Donde se va a ejecutar el Pipeline
   agent {
-    label 'Slave4_Induccion'
+    label 'Slave_Induccion'
   }
 
-//Opciones específicas de Pipeline dentro del Pipeline
-  options {
-        buildDiscarder(logRotator(numToKeepStr: '3'))
-     disableConcurrentBuilds()
-  }
-//Una sección que define las herramientas “preinstaladas” en Jenkins
-  tools {
-    jdk 'JDK8_Centos'
-    gradle 'Gradle5.0_Centos'
-  }
+     triggers {
+        pollSCM('* * * * *')
+    }
+
+    tools {
+        jdk 'JDK8_Centos' //Verisión preinstalada en la Configuración del Master
+    }
+    
 //Aquí comienzan los “items” del Pipeline
   stages{
       stage('Checkout') {
@@ -28,18 +26,23 @@ pipeline {
             submoduleCfg: [],
             userRemoteConfigs: [[
             credentialsId: 'GitHub_Richardace',
-            url:'https://github.com/Richardace/adn-veterinary.git'
+            url:'https://github.com/Richardace/adn-front-veterinary'
             ]]
         ])
       }
     }
 
 
-     stage('NPM Install') {
-      steps{
-        echo "------------>Installing<------------"
-        sh 'npm install'
-      }
+    stage('Install') {
+        steps {
+            sh 'npm install'
+        }
+    }
+
+    stage('Tests') {
+        steps {
+            sh 'npm run test'
+        }
     }
 // /*
 //      stage('Unit Test') {
