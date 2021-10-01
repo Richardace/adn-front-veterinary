@@ -11,7 +11,8 @@ module.exports = function (config) {
       require('karma-junit-reporter'),
       require('karma-jasmine-html-reporter'),
       require('karma-coverage-istanbul-reporter'),
-      require('@angular-devkit/build-angular/plugins/karma')
+      require('@angular-devkit/build-angular/plugins/karma'),
+      require('karma-sonarqube-reporter')
     ],
     client: {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
@@ -28,7 +29,7 @@ module.exports = function (config) {
       reports: ['html', 'lcovonly', 'text-summary'],
       fixWebpackSourcePaths: true
     },
-    reporters: ['progress', 'kjhtml','junit'],
+    reporters: ['progress', 'kjhtml','junit', 'sonarqube'],
     htmlReporter: {
       outputFile: 'reports/unit/units.html',
 
@@ -47,7 +48,7 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chrome'],
+    browsers: ['Chrome', 'ChromeHeadless'],
     singleRun: false,
     restartOnFileChange: true
   });
