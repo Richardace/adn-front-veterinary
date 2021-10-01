@@ -1,0 +1,25 @@
+
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+  
+      <!-- Icon -->
+      <div class="fadeIn first">
+        <img src="https://i.pinimg.com/originals/5d/5c/da/5d5cda59ca315dea67786b086b3eceb1.png" id="icon" alt="User Icon" style="width: 50px; height: 50px; margin-top: 20px; margin-bottom: 20px;" />
+      </div>
+
+      <form #myForm="ngForm" (ngSubmit)="submit()">
+        <input type="text" id="nombre" class="fadeIn second" [(ngModel)]="usuario.nombre" name="nombre" placeholder="Nombre" required>
+        <input type="text" id="correo" class="fadeIn second" [(ngModel)]="usuario.correo" name="correo" placeholder="Correo Electronico" required>
+        <input type="password" id="password" class="fadeIn third" [(ngModel)]="usuario.clave" name="clave" placeholder="Contraseña" placeholder="password">
+        <br>
+        <input type="submit" class="fadeIn fourth" value="Registrarse">
+      </form>
+  
+      <!-- Remind Passowrd -->
+      <div id="formFooter">
+        <a class="underlineHover" routerLink="/login">¿ Ya tienes una cuenta ? Inicia Sesión Aquí</a>
+      </div>
+  
+    </div>
+  </div>
