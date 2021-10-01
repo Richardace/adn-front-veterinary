@@ -21,14 +21,14 @@ pipeline {
         echo "------------>Checkout<------------"
         checkout([
             $class: 'GitSCM',
-            branches: [[name: '*/master']],
+            branches: [[name: '*/main']],
             doGenerateSubmoduleConfigurations: false,
             extensions: [],
             gitTool: 'Default',
             submoduleCfg: [],
             userRemoteConfigs: [[
-            credentialsId: 'GitHub_danielcossi0', 
-            url:'https://github.com/danielcossi0/ReservaDePeliculasFront.git'
+            credentialsId: 'GitHub_Richardace',
+            url:'https://github.com/Richardace/adn-veterinary.git'
             ]]
         ])
       }
@@ -41,22 +41,22 @@ pipeline {
         sh 'npm install'
       }
     }
-/*
-     stage('Unit Test') {
-      steps{
-        echo '------------>Unit Test<------------'
-        sh 'ng test --browsers ChromeHeadless --progress=false --watch false --code-coverage'
-      }
-    }
-*/
-    stage('Static Code Analysis'){
-        steps{
-            echo '------------>Analisis de código estático<------------'
-            withSonarQubeEnv('Sonar') {
-                     sh "${tool name: 'SonarScanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dproject.settings=sonar-project.properties"
-            }
-        }
-    }
+// /*
+//      stage('Unit Test') {
+//       steps{
+//         echo '------------>Unit Test<------------'
+//         sh 'ng test --browsers ChromeHeadless --progress=false --watch false --code-coverage'
+//       }
+//     }
+// */
+    // stage('Static Code Analysis'){
+    //     steps{
+    //         echo '------------>Analisis de código estático<------------'
+    //         withSonarQubeEnv('Sonar') {
+    //                  sh "${tool name: 'SonarScanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dproject.settings=sonar-project.properties"
+    //         }
+    //     }
+    // }
 
 
     stage('Build') {
