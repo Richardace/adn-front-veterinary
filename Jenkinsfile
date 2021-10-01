@@ -39,6 +39,13 @@ pipeline {
         }
     }
 
+    stage('Construir Proyecto') {
+        steps {
+          echo '------------>Building<------------'
+          sh 'npm run build'
+        }
+    }
+
     stage('Tests') {
         steps {
             sh 'npm test'
@@ -55,13 +62,6 @@ pipeline {
     }
 
 
-    stage('Build') {
-            steps {
-              echo '------------>Building<------------'
-              sh 'npm run build'
-            }
-        }
-  }
   post {
     always {
       echo 'This will always run'
