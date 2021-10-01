@@ -41,7 +41,7 @@ pipeline {
 
     stage('Tests') {
         steps {
-            sh 'npm run test --watch=false'
+            sh 'npm test --watch=false --code-coverage'
         }
     }
 
