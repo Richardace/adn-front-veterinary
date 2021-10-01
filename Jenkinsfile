@@ -1,7 +1,7 @@
 pipeline {
 //Donde se va a ejecutar el Pipeline
   agent {
-    label 'Slave_Induccion'
+    label 'Slave4_Induccion'
   }
 
      triggers {
@@ -41,31 +41,24 @@ pipeline {
 
     stage('Tests') {
         steps {
-            sh 'npm run test'
+            sh 'ng test --watch=false --code-coverage'
         }
     }
-// /*
-//      stage('Unit Test') {
-//       steps{
-//         echo '------------>Unit Test<------------'
-//         sh 'ng test --browsers ChromeHeadless --progress=false --watch false --code-coverage'
-//       }
-//     }
-// */
-    // stage('Static Code Analysis'){
-    //     steps{
-    //         echo '------------>Analisis de código estático<------------'
-    //         withSonarQubeEnv('Sonar') {
-    //                  sh "${tool name: 'SonarScanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dproject.settings=sonar-project.properties"
-    //         }
-    //     }
-    // }
+
+    stage('Static Code Analysis'){
+        steps{
+            echo '------------>Analisis de código estático<------------'
+            withSonarQubeEnv('Sonar') {
+                     sh "${tool name: 'SonarScanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dproject.settings=sonar-project.properties"
+            }
+        }
+    }
 
 
     stage('Build') {
             steps {
               echo '------------>Building<------------'
-              sh 'ng build'
+              sh 'npm run build'
             }
         }
   }

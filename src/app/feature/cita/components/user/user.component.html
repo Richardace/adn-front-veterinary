@@ -79,7 +79,7 @@
       <form role="form" #myForm="ngForm" (ngSubmit)="crearRegistro()">
         <div class="form-group">
           <label for="fecha">Fecha</label>
-          <input type="date" [(ngModel)]="nuevaCita.fecha" name="fecha" required class="form-control">
+          <input type="date" [(ngModel)]="nuevaCita.fecha" name="fecha" required class="form-control" required>
         </div>
         <br>
         <div class="form-group">

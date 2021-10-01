@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { RegisterComponent } from './feature/register/components/register/register.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     BrowserAnimationsModule,
     RouterModule,
     ToastrModule.forRoot(),
-    NgbModule
+    NgbModule,
+    HttpClientModule
   ],
   providers: [CookieService],
     bootstrap: [AppComponent],

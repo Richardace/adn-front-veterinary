@@ -69,8 +69,17 @@ export class UserComponent implements OnInit {
   }
 
   crearRegistro(){
+    
     this.nuevaCita.idUsuario = +sessionStorage.getItem('idUser');
-    this.nuevaCita.fecha = this.nuevaCita.fecha.toString().concat(" 00:00:00");
+    if(this.nuevaCita.fecha == undefined){
+      this.nuevaCita.fecha = null;
+    }else{
+      this.nuevaCita.fecha = this.nuevaCita.fecha.toString().concat(" 00:00:00");
+    }
+
+    if(isNaN(+this.nuevaCita.hora)){
+      this.nuevaCita.hora = null;
+    }
 
     this.citaService.guardar(this.nuevaCita)
      .subscribe( 
@@ -82,8 +91,6 @@ export class UserComponent implements OnInit {
       },
       error => {
         alert(error.error.mensaje)
-        console.log(error.error.mensaje)
-        console.log(error.error.nombreExcepcion)
         this.modalService.dismissAll();
         this.nuevaCita = {} as Cita;
         this.ngOnInit();

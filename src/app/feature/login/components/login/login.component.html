@@ -7,19 +7,7 @@
       <div class="fadeIn first">
         <img src="https://i.pinimg.com/originals/5d/5c/da/5d5cda59ca315dea67786b086b3eceb1.png" id="icon" alt="User Icon" style="width: 50px; height: 50px; margin-top: 20px; margin-bottom: 20px;" />
       </div>
-  
-      <!-- Login Form -->
-      <!-- <form >
-        <p>
-            <input type="text"  [(ngModel)]="usuario.correo" name="usuario" required>
-        </p>
-        <p>
-            <input type="password"  [(ngModel)]="usuario.clave" name="clave" required>
-        </p>
-        <p>
-            <button type="submit" >Submit</button>
-        </p>
-    </form> -->
+
       <form #myForm="ngForm" (ngSubmit)="submit()">
         <input type="text" id="login" class="fadeIn second" [(ngModel)]="usuario.correo" name="usuario" placeholder="Correo Electronico" required>
         <input type="password" id="password" class="fadeIn third" [(ngModel)]="usuario.clave" name="clave" placeholder="Contraseña" placeholder="password">
