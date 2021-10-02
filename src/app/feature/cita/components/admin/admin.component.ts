@@ -1,9 +1,8 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Observable } from 'rxjs';
 import { LoginService } from 'src/app/feature/login/login.service';
-import { Cita } from '../../shared/model/Cita';
+import { Cita } from '../../shared/model/cita.interface'; 
 import { CitaService } from '../../shared/service/cita.service';
 
 @Component({
@@ -12,10 +11,9 @@ import { CitaService } from '../../shared/service/cita.service';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
-
   cita = {} as Cita;
 
-  citas: Observable<Cita[]>;
+  public citas: Cita[] = [];
 
   @ViewChild("editarRegistroTemplate", {static: false}) editarRegistroTemplate: TemplateRef<any>;
 
@@ -41,8 +39,12 @@ export class AdminComponent implements OnInit {
 
 
 
-  listarCitas(){
-    this.citas = this.citaService.consultar();
+  listarCitas(): void{
+    this.citaService.consultar().subscribe(
+      (data) => {
+        this.citas = data;
+      }
+    );
   }
 
   guardarCambios(){

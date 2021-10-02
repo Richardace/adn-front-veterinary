@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { HttpService } from '@core/services/http.service';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Cita } from '../model/Cita';
-
+import { Cita } from '../model/cita.interface'; 
 @Injectable({
   providedIn: 'root'
 })
@@ -18,8 +18,8 @@ export class CitaService {
       this.http.optsName('crear Cita'));
   }
 
-  public consultar() {
-    return this.http.doGet<Cita[]>(`${environment.endpoint}/citas`,
+  public consultar(): Observable<Cita[]> {
+    return this.http.doGet(`${environment.endpoint}/citas`,
       this.http.optsName('consultar Citas'));
   }
 

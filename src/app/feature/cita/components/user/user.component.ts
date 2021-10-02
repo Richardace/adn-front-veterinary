@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs';
 import { LoginService } from 'src/app/feature/login/login.service';
-import { Cita } from '../../shared/model/Cita';
+import { Cita } from '../../shared/model/cita.interface';
 import { CitaService } from '../../shared/service/cita.service';
 
 @Component({
