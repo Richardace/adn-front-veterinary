@@ -1,6 +1,6 @@
 <a class="btn btn-danger btn-lg" (click)="cerrarSesion()" style="width: 130px; height: 40px; font-size: 15px; float: right; margin-bottom: 20px; margin-top: 20px; margin-right: 20px;" >Cerrar Sesión</a>
 
-<a class="btn btn-success btn-lg" (click)="crearCita()"
+<a class="btn btn-success btn-lg" id="crearCitaBoton" (click)="crearCita()"
   style="width: 130px; height: 40px; font-size: 15px; float: left; margin-bottom: 20px; margin-top: 20px; margin-left: 20px;">Crear
   Cita</a>
 <div class="justify-content-center" style="width: 80%; text-align: center; margin: 0 auto;">
@@ -16,7 +16,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of citas | async">
+      <tr *ngFor="let item of citas">
         <th scope="row">{{ item.id }}</th>
         <td>{{ item.fecha }}</td>
         <td>{{ item.hora }}</td>
@@ -79,20 +79,20 @@
       <form role="form" #myForm="ngForm" (ngSubmit)="crearRegistro()">
         <div class="form-group">
           <label for="fecha">Fecha</label>
-          <input type="date" [(ngModel)]="nuevaCita.fecha" name="fecha" required class="form-control" required>
+          <input type="date" [(ngModel)]="nuevaCita.fecha" id="fecha" name="fecha" required class="form-control" required>
         </div>
         <br>
         <div class="form-group">
           <label for="hora">Hora</label>
-          <input type="text" [(ngModel)]="nuevaCita.hora" name="hora" required class="form-control">
+          <input type="text" [(ngModel)]="nuevaCita.hora" id="hora" name="hora" required class="form-control">
         </div>
         <br>
         <div class="form-group">
           <label for="notas">Notas</label>
-          <input type="text" [(ngModel)]="nuevaCita.notas" name="notas" required class="form-control">
+          <input type="text" [(ngModel)]="nuevaCita.notas" id="notas" name="notas" required class="form-control">
         </div>
         <br>
-        <button type="submit" class="subscribe btn btn-success btn-block rounded-pill shadow-sm" style="display: block;
+        <button id="crear" type="submit" class="subscribe btn btn-success btn-block rounded-pill shadow-sm" style="display: block;
         margin: 0 auto;"> Crear Registro</button>
       </form>
     </div>

@@ -22,6 +22,7 @@ export class LoginService {
       sessionStorage.setItem('nombre', (usuario.nombre).toString());
       sessionStorage.setItem('correo', (usuario.correo).toString());
       sessionStorage.setItem('rol', (usuario.rol).toString());
+      return true;
   }
 
   usuarioLogueado():boolean {

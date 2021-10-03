@@ -21,7 +21,8 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  submit(){
+  submit(): boolean{
+    let success = true;
     this.loginService.autenticar(this.usuario)
      .subscribe( 
       result => {
@@ -32,7 +33,10 @@ export class LoginComponent implements OnInit {
         alert(error.error.mensaje)
         console.log(error.error.mensaje)
         console.log(error.error.nombreExcepcion)
+        success = false;
       })
+    
+      return success;
   }
 
 }

@@ -12,12 +12,12 @@ export class HomeComponent implements OnInit {
   constructor(private userService: UsuarioServiceService,
     private router: Router) { }
 
-ngOnInit(): void {
-if(this.userService.traerRolUsuario() === "admin"){
-this.router.navigate(['citas/admin']);
-}else if(this.userService.traerRolUsuario() === "user"){
-this.router.navigate(['citas/user']);
-}
-}
+  ngOnInit(): void {
+    if (this.userService.traerRolUsuario() === "admin") {
+      this.router.navigate(['citas/admin']);
+    } else if (this.userService.traerRolUsuario() === "user") {
+      this.router.navigate(['citas/user']);
+    }
+  }
 
 }

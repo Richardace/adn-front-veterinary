@@ -20,14 +20,13 @@ export class AdminComponent implements OnInit {
   constructor(private loginService: LoginService, 
               private router: Router,
               private citaService: CitaService,
-              private modalService: NgbModal) { }
+              public modalService: NgbModal) { }
 
-    ngOnInit(): void {
-      this.listarCitas();
-    }
+  ngOnInit(): void {
+    this.listarCitas();
+  }
 
   cerrarSesion(){
-    console.group("cerrar sesion")
     this.loginService.cerrarSesionUsuario();
     this.router.navigate(['']);
   }
@@ -35,6 +34,7 @@ export class AdminComponent implements OnInit {
   editar(cita: Cita){
     this.cita = cita;
     this.modalService.open(this.editarRegistroTemplate);
+    return this.modalService.hasOpenModals();
   }
 
 
@@ -51,14 +51,11 @@ export class AdminComponent implements OnInit {
     this.citaService.actualizar(this.cita)
      .subscribe( 
       () => {
-        console.log("exito")
         this.modalService.dismissAll();
         this.ngOnInit();
       },
       error => {
         alert(error.error.mensaje)
-        console.log(error.error.mensaje)
-        console.log(error.error.nombreExcepcion)
         this.modalService.dismissAll();
         this.ngOnInit();
       })

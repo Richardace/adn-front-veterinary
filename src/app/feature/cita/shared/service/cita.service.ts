@@ -19,11 +19,11 @@ export class CitaService {
   }
 
   public consultar(): Observable<Cita[]> {
-    return this.http.doGet(`${environment.endpoint}/citas`,
+    return this.http.doGet<Cita[]>(`${environment.endpoint}/citas`,
       this.http.optsName('consultar Citas'));
   }
 
-  public consultarbyId(idUser: number) {
+  public consultarbyId(idUser: number): Observable<Cita[]> {
     return this.http.doGet<Cita[]>(`${environment.endpoint}/citas/${idUser}`,
       this.http.optsName('listar por cedula'));
   }

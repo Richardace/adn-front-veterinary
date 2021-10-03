@@ -12,6 +12,7 @@ import { RegisterComponent } from './register.component';
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
   let fixture: ComponentFixture<RegisterComponent>;
+  let serviceLogin: LoginService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -32,10 +33,38 @@ describe('RegisterComponent', () => {
     fixture = TestBed.createComponent(RegisterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    serviceLogin = TestBed.inject(LoginService);
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('Usuario Logueado', () => {
+
+    // Preparacion
+    sessionStorage.setItem('idUser', (1).toString());
+    spyOn(serviceLogin, 'usuarioLogueado').and.returnValue(true);
+
+    // Accion
+    let estadoLogin = serviceLogin.usuarioLogueado();
+
+    // Comparacion
+    expect(estadoLogin).toEqual(true);
+
+  });
+
+  it('Usuario NO Logueado', () => {
+
+    // Preparacion
+    spyOn(serviceLogin, 'usuarioLogueado').and.returnValue(false);
+
+    // Accion
+    let estadoLogin = serviceLogin.usuarioLogueado();
+
+    // Comparacion
+    expect(estadoLogin).toEqual(false);
+
   });
 
   afterEach(() => {
