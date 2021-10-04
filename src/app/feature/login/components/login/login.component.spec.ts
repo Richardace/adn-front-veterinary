@@ -67,19 +67,6 @@ describe('LoginComponent', () => {
 
   });
 
-  it('Usuario Autenticado', () => {
-
-    // Preparacion
-    spyOn(component, 'submit').and.returnValue(true);
-
-    // Accion
-    let estadoAutenticacion = component.submit();
-
-    // Comparacion
-    expect(estadoAutenticacion).toEqual(true);
-
-  });
-
   it('Guardar Sesion Usuario', () => {
 
     // Preparacion
@@ -96,6 +83,25 @@ describe('LoginComponent', () => {
 
     // Comparacion
     expect(estadoAutenticacion).toEqual(true);
+
+  });
+
+  it('Guardar Sesion Usuario Fallo', () => {
+
+    // Preparacion
+    spyOn(serviceLogin, 'guardarSesion').and.returnValue(false);
+    let nuevoRegistro = {} as Usuario;
+
+    nuevoRegistro.nombre = "richard";
+    nuevoRegistro.correo = "richardacevedo98@gmail.com";
+    nuevoRegistro.clave = "1234";
+    nuevoRegistro.rol = "user";
+
+    // Accion
+    let estadoAutenticacion = serviceLogin.guardarSesion(nuevoRegistro);
+
+    // Comparacion
+    expect(estadoAutenticacion).toEqual(false);
 
   });
 
