@@ -1,4 +1,4 @@
-<a class="btn btn-danger btn-lg" (click)="cerrarSesion()" style="width: 130px; height: 40px; font-size: 15px; float: right; margin-bottom: 20px; margin-top: 20px; margin-right: 20px;" >Cerrar Sesión</a>
+<a class="btn btn-danger btn-lg" id="cerrarSesion" (click)="cerrarSesion()" style="width: 130px; height: 40px; font-size: 15px; float: right; margin-bottom: 20px; margin-top: 20px; margin-right: 20px;" >Cerrar Sesión</a>
 
 <a class="btn btn-success btn-lg" id="crearCitaBoton" (click)="crearCita()"
   style="width: 130px; height: 40px; font-size: 15px; float: left; margin-bottom: 20px; margin-top: 20px; margin-left: 20px;">Crear
@@ -92,7 +92,7 @@
           <input type="text" [(ngModel)]="nuevaCita.notas" id="notas" name="notas" required class="form-control">
         </div>
         <br>
-        <button id="crear" type="submit" class="subscribe btn btn-success btn-block rounded-pill shadow-sm" style="display: block;
+        <button type="submit"  id="crear" class="subscribe btn btn-success btn-block rounded-pill shadow-sm" style="display: block;
         margin: 0 auto;"> Crear Registro</button>
       </form>
     </div>
